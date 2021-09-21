@@ -27,5 +27,5 @@ server.use(cors())
 //   res.status(201).json(await insertUser(req.body))
 // })
 server.use("/api/auth", authRouter)
-server.use("*", (req, res) => { res.status(404).json({  message: "HA!, The joke's on you!" })})
+server.use("*", (req, res) => { res.status(404).json({  message: "African Marketplace Project." })})
 module.exports = server
