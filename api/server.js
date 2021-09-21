@@ -1,7 +1,7 @@
 const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
-const authRouter = require("../api/auth/authRouter")
+const authRouter = require("./auth/auth-router")
 //const db = require('./data/db-config')
 
 //function getAllUsers() { return db('users') }
