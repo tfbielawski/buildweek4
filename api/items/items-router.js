@@ -25,12 +25,27 @@ itemRouter.put("/:id", async (req, res, next) => {
     catch(err){next(err)}
 })
 
-itemRouter.post("/:id", async (req, res, next) => {
-    try{
-        const newItem = await Items.insert()
-        res.status(200).json({newItem, message: "item created"})
-    }
-    catch(err){next(err)}
+// itemRouter.post("/",  (req, res, next) => {
+//     try{
+//         const newItem = await Items.insert(req.body)
+//         res.status(200).json({newItem, message: "item created"})
+//     }
+//     catch(err){next(err)}
+//     // const newItem = req.body
+//     // Items.insert(newItem)
+//     //     .then(thingy => {
+//     //         res.status(201).json({ message: "item created"})
+//     //     })
+//     //     .catch(next())
+// })
+
+itemRouter.post('/',  (req, res, next) => {
+    const newItem = req.body
+    Items.insert(newItem)
+        .then(item => {
+            res.status(201).json({ message: `You have successfully created the event: ${item.title}`, item})
+        })
+        .catch(next)
 })
 
 itemRouter.delete("/:id", async (req, res, next) => {

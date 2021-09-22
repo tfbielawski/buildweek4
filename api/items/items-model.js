@@ -19,15 +19,12 @@ async function update(id, itemBody) {
     return findById(id)
 }
 
-
 //Insert an item into the table
 async function insert(item) {
-    const [id] = await db('items').insert(item, "id")
-    return db("items").where("item_id", id)
+    return db("items").insert(item, "item_id")
 }
 
-
-
+//Remove an item from the table
 function remove(id,) {
     return db('items').where("item_id",id).first()
         .del()
