@@ -1,4 +1,5 @@
 const db = require('../../data/db-config');
+const {findById} = require("../auth/auth-model");
 
 //Get all items
 function get() {
@@ -11,10 +12,13 @@ function getById(id) {
 }
 
 //Update an item
-async function update(item) {
+async function update(id, itemBody) {
     await db('items')
-    return item
+        .update(itemBody)
+        .where("item_id", id)
+    return findById(id)
 }
+
 
 //Insert an item into the table
 async function insert(item) {
@@ -23,9 +27,10 @@ async function insert(item) {
 }
 
 
-async function remove(item) {
-    await db('items')
-    return item
+
+function remove(id,) {
+    return db('items').where("item_id",id).first()
+        .del()
 }
 
 module.exports = { get, getById, insert, update, remove}

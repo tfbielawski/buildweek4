@@ -11,7 +11,7 @@ itemRouter.get("/", async (req, res, next) => {
 
 itemRouter.get("/:id",  async (req, res, next) => {
     try{
-        const getItemById = await Items.getById(req.params.id)
+        const getItemById = await Items.getById(req.params.id, req.body)
         res.status(200).json(getItemById)
     }
     catch(err){next(err)}
@@ -35,7 +35,7 @@ itemRouter.post("/:id", async (req, res, next) => {
 
 itemRouter.delete("/:id", async (req, res, next) => {
     try{
-        const removeItem = await Items.remove()
+        const removeItem = await Items.remove(req.params.id, req.body)
         res.status(200).json({removeItem, message: "item deleted"})
     }
     catch(err){next(err)}
