@@ -1,6 +1,3 @@
-//get getbyid insert update delete
-//pull, switch, git merge main
-
 const db = require('../../data/db-config');
 
 //Get all items
@@ -16,9 +13,10 @@ async function getById(id) {
 //Insert an item into the table
 async function insert(item) {
     const [id] = await db('items').insert(item)
-    return db("items").where()
+    return db("items").where("id", id)
 }
 
+//Update an item
 async function update(item) {
     await db('items')
     return item
