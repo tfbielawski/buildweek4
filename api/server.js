@@ -2,6 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const authRouter = require('./auth/auth-router');
+const itemsRouter = require('./items/items-router');
 //const db = require('./data/db-config')
 
 //function getAllUsers() { return db('users') }
@@ -21,6 +22,7 @@ server.use(cors())
 
 
 server.use("/api/auth", authRouter)
+server.use("/api/items", itemsRouter)
 
 // server.use('*', (req, res) => {
 //     res.status(404).json({
