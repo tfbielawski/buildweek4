@@ -22,6 +22,12 @@ server.use(cors())
 
 server.use("/api/auth", authRouter)
 
+// server.use('*', (req, res) => {
+//     res.status(404).json({
+//         message: `Not all those who wander are lost, but it looks like you are.`
+//     })
+// })
+
 server.use((err, req, res, next) => { // eslint-disable-line
     res.status(err.status || 500).json({
         message: err.message,
