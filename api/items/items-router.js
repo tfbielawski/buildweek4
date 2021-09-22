@@ -9,7 +9,7 @@ itemRouter.get("/", async (req, res, next) => {
     catch(err){next(err)}
 })
 
-itemRouter.get("/:id", async (req, res, next) => {
+itemRouter.get("/:id",  async (req, res, next) => {
     try{
         const getItemById = await Items.getById(req.params.id)
         res.status(200).json(getItemById)
@@ -19,7 +19,7 @@ itemRouter.get("/:id", async (req, res, next) => {
 
 itemRouter.put("/:id", async (req, res, next) => {
     try{
-        const updateItem = await Items.update(req.body)
+        const updateItem = await Items.update(req.params.id, req.body)
         res.status(200).json({updateItem, message: "item updated"})
     }
     catch(err){next(err)}
