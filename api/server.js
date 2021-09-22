@@ -2,6 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 const authRouter = require('./auth/auth-router');
+const itemsRouter = require('./items/items-router');
 //const db = require('./data/db-config')
 
 //function getAllUsers() { return db('users') }
@@ -21,8 +22,15 @@ server.use(cors())
 
 
 server.use("/api/auth", authRouter)
+server.use("/api/items", itemsRouter)
 
-server.use((err, req, res, next) => { // eslint-disable-line
+// server.use('*', (req, res) => {
+//     res.status(404).json({
+//         message: `Not all those who wander are lost, but it looks like you are.`
+//     })
+// })
+
+server.use("*", ( err, req, res, next) => { // eslint-disable-line
     res.status(err.status || 500).json({
         message: err.message,
         stack: err.stack,
